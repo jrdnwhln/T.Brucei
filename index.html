@@ -210,7 +210,6 @@
       color: #9ca3af;
     }
 
-    /* CDC images block inside timeline */
     .timeline-images {
       margin-top: 1rem;
       padding-top: 0.75rem;
@@ -244,7 +243,6 @@
       color: #9ca3af;
     }
 
-    /* Quiz */
     .quiz-question {
       margin: 0.3rem 0 0.5rem;
       font-size: 0.95rem;
@@ -270,7 +268,7 @@
       cursor: pointer;
       font-size: 0.85rem;
       background: #020617;
-      color: #ffffff; /* readable white text */
+      color: #ffffff;
       transition: background 0.15s ease, border-color 0.15s ease, transform 0.05s ease;
       text-align: left;
     }
@@ -320,19 +318,24 @@
       text-align: right;
     }
 
-    /* WHY IT MATTERS PANEL */
-    .why-section {
+    .why-section,
+    .ecology-section,
+    .citations-section {
       font-size: 0.85rem;
       line-height: 1.5;
     }
 
-    .why-section h3 {
+    .why-section h3,
+    .ecology-section h3,
+    .citations-section h3 {
       margin-top: 0.7rem;
       margin-bottom: 0.2rem;
       font-size: 0.95rem;
     }
 
-    .why-section p {
+    .why-section p,
+    .ecology-section p,
+    .citations-section p {
       margin: 0.2rem 0 0.4rem;
     }
 
@@ -345,14 +348,14 @@
       margin-bottom: 0.6rem;
     }
 
-    .why-chip-row {
+    .chip-row {
       display: flex;
       flex-wrap: wrap;
       gap: 0.35rem;
       margin-top: 0.2rem;
     }
 
-    .why-chip {
+    .chip {
       border-radius: 999px;
       border: 1px solid #374151;
       padding: 0.15rem 0.55rem;
@@ -360,23 +363,122 @@
       color: #e5e7eb;
       background: rgba(15, 23, 42, 0.9);
     }
+
+    #bs-forms-section {
+      margin-top: 0.7rem;
+    }
+
+    .bs-forms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.4rem;
+      margin-top: 0.3rem;
+    }
+
+    .bs-form-card {
+      border-radius: 0.7rem;
+      border: 1px solid #374151;
+      padding: 0.4rem 0.55rem;
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 0.78rem;
+    }
+
+    .bs-form-card strong {
+      display: block;
+      margin-bottom: 0.15rem;
+      font-size: 0.8rem;
+    }
+
+    /* GAME: T. brucei Trail */
+    .game-section {
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .game-status {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      margin-top: 0.4rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .game-box {
+      margin-top: 0.6rem;
+      border-radius: 0.9rem;
+      border: 1px solid #374151;
+      background: rgba(15, 23, 42, 0.9);
+      padding: 0.7rem 0.8rem;
+    }
+
+    .game-title {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      font-size: 0.95rem;
+    }
+
+    .game-text {
+      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+    }
+
+    .game-outcome {
+      font-size: 0.8rem;
+      margin-top: 0.3rem;
+      min-height: 1.2em;
+      color: #9ca3af;
+    }
+
+    .game-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      margin-top: 0.4rem;
+    }
+
+    .game-meta {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      margin-top: 0.4rem;
+    }
+
+    .citations-list {
+      font-size: 0.8rem;
+      padding-left: 1.1rem;
+    }
+
+    .citations-list li {
+      margin-bottom: 0.35rem;
+    }
+
+    .citations-list a {
+      color: #60a5fa;
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .citations-list a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
 <header>
   <h1>Trypanosoma brucei Life Cycle Explorer</h1>
-  <p>Interactive overview of African trypanosomiasis (sleeping sickness): stages, ecology, and quiz.</p>
+  <p>Interactive overview of African trypanosomiasis (sleeping sickness): stages, quiz, ecology, and a T. brucei Trail game.</p>
 </header>
 
 <main>
   <div class="mode-switch">
     <button id="mode-explore" class="btn active">Explore Life Cycle</button>
-    <button id="mode-quiz" class="btn">Quiz Mode</button>
+    <button id="mode-quiz" class="btn">Quiz</button>
+    <button id="mode-game" class="btn">Game: T. brucei Trail</button>
     <button id="mode-why" class="btn">Why It Matters</button>
+    <button id="mode-ecology" class="btn">Ecology &amp; Climate</button>
+    <button id="mode-citations" class="btn">Works Cited</button>
   </div>
 
   <div class="layout">
-    <!-- SIDEBAR: TIMELINE + CDC PICS -->
+    <!-- SIDEBAR -->
     <aside class="timeline">
       <div class="timeline-title">Life Cycle Timeline</div>
       <div class="timeline-sub">
@@ -413,7 +515,7 @@
       </div>
     </aside>
 
-    <!-- MAIN PANEL: EXPLORE -->
+    <!-- PANEL: EXPLORE -->
     <section id="panel-explore" class="card">
       <h2 id="stage-title">Select a stage</h2>
       <div class="pill-row" id="stage-pills"></div>
@@ -431,13 +533,30 @@
       <ul class="bullet-list" id="stage-notes"></ul>
 
       <div class="flow" id="stage-flow"></div>
+
+      <div id="bs-forms-section" style="display:none;">
+        <div class="label">Bloodstream forms in humans</div>
+        <div class="bs-forms-grid">
+          <div class="bs-form-card">
+            <strong>Slender form</strong>
+            Replicating bloodstream trypomastigote. Multiplies rapidly and drives parasitemia,
+            using antigenic variation to evade the immune response. Dominant early in infection.
+          </div>
+          <div class="bs-form-card">
+            <strong>Stumpy form</strong>
+            Non-dividing, transmission-competent form. More stress-resistant and adapted to survive
+            in the tsetse fly midgut after a blood meal. Essential for carrying the life cycle back
+            into the vector.
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- MAIN PANEL: QUIZ -->
+    <!-- PANEL: QUIZ -->
     <section id="panel-quiz" class="card" style="display:none;">
       <h2>Quiz</h2>
       <p class="quiz-desc">
-        Multiple-choice practice on <em>T. brucei</em>, its vectors, and key clinical features.
+        Multiple-choice practice on <em>T. brucei</em>, its vectors, key stages, and high-yield clinical facts.
       </p>
       <div class="quiz-question" id="quiz-question-text"></div>
       <div class="quiz-desc" id="quiz-question-extra"></div>
@@ -448,121 +567,217 @@
       <div class="quiz-meta" id="quiz-meta"></div>
     </section>
 
-    <!-- MAIN PANEL: WHY IT MATTERS -->
+    <!-- PANEL: GAME -->
+    <section id="panel-game" class="card" style="display:none;">
+      <h2>Game: T. brucei Trail</h2>
+      <div class="game-section">
+        <p>
+          You are a single <em>Trypanosoma brucei</em> parasite trying to complete your life cycle.
+          Make biologically correct choices to move from tsetse fly to human and back again.
+          Wrong choices break the cycle.
+        </p>
+
+        <div class="game-status" id="game-status"></div>
+
+        <div class="game-box">
+          <div class="game-title" id="game-state-title"></div>
+          <div class="game-text" id="game-state-text"></div>
+          <div class="game-options" id="game-options"></div>
+          <div class="game-outcome" id="game-outcome"></div>
+          <div class="game-meta" id="game-meta"></div>
+        </div>
+        <button class="btn" id="game-reset" style="margin-top:0.6rem;">Restart T. brucei Trail</button>
+      </div>
+    </section>
+
+    <!-- PANEL: WHY IT MATTERS -->
     <section id="panel-why" class="card" style="display:none;">
-      <h2>Why It Matters: Ecology, Climate, and Burden</h2>
+      <h2>Why It Matters</h2>
       <div class="why-section">
         <div class="why-highlight">
-          <strong>Sleeping sickness is almost always fatal without treatment.</strong>
-          It is caused by <em>Trypanosoma brucei</em> and spread by tsetse flies in
-          rural, sub-Saharan Africa. Communities that rely on farming, herding,
-          fishing, and hunting live and work where these flies thrive.
+          <strong>Without treatment, sleeping sickness is usually fatal.</strong>
+          Human African trypanosomiasis is a neglected tropical disease caused by
+          <em>Trypanosoma brucei</em>, transmitted by tsetse flies in rural sub-Saharan Africa.
         </div>
 
-        <h3>Where the parasite lives</h3>
+        <h3>Human and community burden</h3>
         <p>
-          According to CDC and DPDx, human African trypanosomiasis only occurs in
-          <strong>sub-Saharan Africa</strong>. Two subspecies dominate the map:
+          Infection often begins with fever, headache, and lymphadenopathy, and can later progress
+          to confusion, behavior changes, and disruption of the sleep–wake cycle when the nervous
+          system is involved. Without diagnosis and treatment, people may progress to coma and death.
         </p>
         <ul class="bullet-list">
-          <li>
-            <strong><em>T. b. gambiense</em></strong> – endemic in
-            <strong>West and Central Africa</strong>; historically responsible for
-            most reported human cases.
-          </li>
-          <li>
-            <strong><em>T. b. rhodesiense</em></strong> – restricted to
-            <strong>East and Southeast Africa</strong>, with foci in countries like
-            Tanzania, Zambia, Zimbabwe, Malawi, and Uganda.
-          </li>
+          <li>Historically caused large epidemics in parts of West, Central, and East Africa.</li>
+          <li>Primarily affects remote rural communities where access to care is limited.</li>
+          <li>Illness and death reduce productivity, schooling, and economic stability.</li>
+          <li>Control programs rely on active surveillance, vector control, and access to treatment.</li>
         </ul>
-        <p>
-          Tsetse flies that transmit these parasites live in
-          <strong>woodlands, savannah thickets, and riverine forests</strong>,
-          often far from cities but very close to cattle, wildlife, and people working
-          the land.
-        </p>
 
-        <div class="why-chip-row">
-          <span class="why-chip">Sub-Saharan Africa only</span>
-          <span class="why-chip">Rural &amp; riverine habitats</span>
-          <span class="why-chip">Wildlife–livestock–human interface</span>
+        <div class="chip-row">
+          <span class="chip">Neglected tropical disease</span>
+          <span class="chip">Fatal without treatment</span>
+          <span class="chip">Rural communities affected</span>
         </div>
 
-        <h3>Parasite ecology: a One Health system</h3>
+        <h3>Where it occurs</h3>
         <p>
-          The ecology of <em>T. brucei</em> is a classic One Health problem:
-          <strong>parasite, vector, wildlife, livestock, and humans are all linked.</strong>
+          Sleeping sickness is only found in sub-Saharan Africa, in areas where tsetse flies live.
+          Two subspecies cause human disease:
         </p>
         <ul class="bullet-list">
           <li>
-            Tsetse flies feed on multiple hosts – wild animals, cattle, and humans –
-            acting as a bridge for parasites between species.
+            <strong><em>T. b. gambiense</em></strong> – West and Central Africa; slower, chronic course and responsible for most reported human cases.
           </li>
           <li>
-            For <em>T. b. gambiense</em>, humans are a key reservoir; for
-            <em>T. b. rhodesiense</em>, cattle and wildlife play a major reservoir role.
-          </li>
-          <li>
-            Land use (clearing forests, expanding farms, building roads) changes
-            tsetse habitat, which can shrink some foci and create new edges of risk
-            where people and flies newly overlap.
+            <strong><em>T. b. rhodesiense</em></strong> – East and Southeast Africa; faster, acute course and a smaller share of cases.
           </li>
         </ul>
 
-        <h3>Climate change and shifting risk</h3>
+        <h3>Why this app exists</h3>
         <p>
-          Tsetse flies are highly sensitive to temperature, humidity, and vegetation.
-          Studies modeling climate trends in endemic regions show that:
+          Typical diagrams show arrows and labels but often stop there. This tool:
         </p>
         <ul class="bullet-list">
-          <li>
-            <strong>Rising temperatures</strong> can make some current lowland habitats
-            too hot and dry for tsetse, reducing fly survival there.
-          </li>
-          <li>
-            At the same time, <strong>higher elevation zones</strong> that used to be
-            too cool are becoming more suitable, allowing tsetse populations to expand
-            into new areas that historically had little or no risk.
-          </li>
-          <li>
-            These shifts can move risk toward new communities and livestock systems,
-            while also changing where control programs need to focus their resources.
-          </li>
+          <li>Lets students explore each life-cycle stage in order.</li>
+          <li>Links vector and host stages to diagnosis and symptoms described in clinical guidance.</li>
+          <li>Uses quiz and game modes to lock in concepts for exams and teaching.</li>
+          <li>Connects the classic life cycle to real-world public health questions.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PANEL: ECOLOGY & CLIMATE -->
+    <section id="panel-ecology" class="card" style="display:none;">
+      <h2>Ecology &amp; Climate: A One Health Parasite</h2>
+      <div class="ecology-section">
+        <h3>Tsetse habitat and hosts</h3>
+        <p>
+          Tsetse flies that transmit <em>T. brucei</em> are found in rural areas of sub-Saharan Africa.
+          They live in woodlands and thickets in East African savannah and in forests and vegetation along
+          streams and rivers in Central and West Africa.
+        </p>
+        <ul class="bullet-list">
+          <li>Flies feed on wild animals, livestock, and humans, linking all three in a transmission network.</li>
+          <li>For <em>T. b. gambiense</em>, humans are an important reservoir; for <em>T. b. rhodesiense</em>, cattle and wildlife play major roles.</li>
+          <li>Changes in land use (clearing, farming, roads) can shift contact between flies, livestock, wildlife, and people.</li>
+        </ul>
+
+        <div class="chip-row">
+          <span class="chip">Rural &amp; riverine habitats</span>
+          <span class="chip">Wildlife–cattle–human interface</span>
+          <span class="chip">One Health system</span>
+        </div>
+
+        <h3>Climate and tsetse distributions</h3>
+        <p>
+          Tsetse flies are sensitive to temperature, humidity, and vegetation cover. Research suggests that as climate changes,
+          some areas may become less suitable for tsetse while other areas may become more favorable, especially in regions that
+          were previously cooler.
+        </p>
+        <ul class="bullet-list">
+          <li>Hotter, drier conditions can reduce tsetse survival in some lowland habitats.</li>
+          <li>Warming at higher elevations may make new areas suitable for tsetse flies and transmission.</li>
+          <li>Changes in rainfall and vegetation can reshape the mosaic of habitat where flies and hosts overlap.</li>
+        </ul>
+
+        <h3>Ecology in the classroom</h3>
+        <p>
+          Sleeping sickness shows how a parasite is embedded in an environmental system:
+        </p>
+        <ul class="bullet-list">
+          <li>Parasite traits (slender vs stumpy forms) are tuned to vector and host biology.</li>
+          <li>Vector ecology depends on climate, vegetation, and host availability.</li>
+          <li>Human behavior (farming, herding, fishing, hunting) changes exposure and control options.</li>
         </ul>
         <p>
-          Climate change doesn’t create the parasite – it <strong>reshuffles the
-          playing field</strong>. Areas that relied on altitude or cooler temperatures
-          as a natural “shield” may lose that protection, while other regions may see
-          declining risk. Public health surveillance and vector control have to adapt
-          to these moving ecological boundaries.
+          This tab is built to push users past memorizing the life cycle into thinking about
+          parasite + vector + environment + climate + people as one system.
+        </p>
+      </div>
+    </section>
+
+    <!-- PANEL: WORKS CITED -->
+    <section id="panel-citations" class="card" style="display:none;">
+      <h2>Works Cited</h2>
+      <div class="citations-section">
+        <p>
+          Content in this app is based on authoritative sources. Key references are listed for documentation
+          and further reading.
         </p>
 
-        <h3>Why this tool matters for students &amp; public health</h3>
-        <p>
-          Most maps label sleeping sickness as “sub-Saharan Africa” and stop there.
-          This tool forces users to connect:
-        </p>
-        <ul class="bullet-list">
+        <h3>CDC – Sleeping Sickness / Human African Trypanosomiasis</h3>
+        <ul class="citations-list">
           <li>
-            <strong>Stage-by-stage parasite biology</strong> – where the parasite is in
-            the human vs. in the fly.
+            Centers for Disease Control and Prevention (CDC). <em>Sleeping Sickness (African Trypanosomiasis) – About.</em>
+            Available at:
+            <a href="https://www.cdc.gov/sleeping-sickness/about/index.html" target="_blank" rel="noreferrer">
+              https://www.cdc.gov/sleeping-sickness/about/index.html
+            </a>
           </li>
           <li>
-            <strong>Ecology of transmission</strong> – tsetse habitat, hosts, and land use.
+            CDC. <em>Sleeping Sickness – Causes.</em> Parasite subspecies, geography, and tsetse habitats.
+            <a href="https://www.cdc.gov/sleeping-sickness/causes/index.html" target="_blank" rel="noreferrer">
+              https://www.cdc.gov/sleeping-sickness/causes/index.html
+            </a>
           </li>
           <li>
-            <strong>Real-world health burden</strong> – who is actually at risk and why
-            rural, poor communities carry most of the weight.
+            CDC. <em>Sleeping Sickness – Prevention.</em>
+            <a href="https://www.cdc.gov/sleeping-sickness/prevention/index.html" target="_blank" rel="noreferrer">
+              https://www.cdc.gov/sleeping-sickness/prevention/index.html
+            </a>
+          </li>
+          <li>
+            CDC. <em>Clinical Guidance for Human African Trypanosomiasis.</em>
+            <a href="https://www.cdc.gov/sleeping-sickness/hcp/clinical-guidance/index.html" target="_blank" rel="noreferrer">
+              https://www.cdc.gov/sleeping-sickness/hcp/clinical-guidance/index.html
+            </a>
+          </li>
+          <li>
+            CDC. <em>Clinical Care of Human African Trypanosomiasis.</em>
+            <a href="https://www.cdc.gov/sleeping-sickness/hcp/clinical-care/index.html" target="_blank" rel="noreferrer">
+              https://www.cdc.gov/sleeping-sickness/hcp/clinical-care/index.html
+            </a>
           </li>
         </ul>
-        <p>
-          For parasitology, global health, or ecology students, this is not just a
-          life cycle diagram – it’s a way to visualize how
-          <strong>climate, geography, and human behavior</strong> interact with a
-          vector-borne parasite that is still capable of outbreak and re-emergence
-          if surveillance and control lapse.
-        </p>
+
+        <h3>CDC – DPDx Parasitology (Life Cycle & Morphology)</h3>
+        <ul class="citations-list">
+          <li>
+            CDC Division of Parasitic Diseases and Malaria. <em>DPDx – Trypanosomiasis, African.</em>
+            Life cycle, diagnostic stages, and images.
+            <a href="https://www.cdc.gov/dpdx/trypanosomiasisafrican/index.html" target="_blank" rel="noreferrer">
+              https://www.cdc.gov/dpdx/trypanosomiasisafrican/index.html
+            </a>
+          </li>
+          <li>
+            CDC DPDx. <em>Case #514 – April 2020.</em> African trypanosomiasis blood smear images and discussion.
+            <a href="https://www.cdc.gov/dpdx/monthlycasestudies/2020/case514.html" target="_blank" rel="noreferrer">
+              https://www.cdc.gov/dpdx/monthlycasestudies/2020/case514.html
+            </a>
+          </li>
+        </ul>
+
+        <h3>WHO and Global Burden</h3>
+        <ul class="citations-list">
+          <li>
+            World Health Organization (WHO). <em>Trypanosomiasis, human African (sleeping sickness) – Fact sheet.</em>
+            <a href="https://www.who.int/news-room/fact-sheets/detail/trypanosomiasis-human-african-(sleeping-sickness)" target="_blank" rel="noreferrer">
+              https://www.who.int/news-room/fact-sheets/detail/trypanosomiasis-human-african-(sleeping-sickness)
+            </a>
+          </li>
+        </ul>
+
+        <h3>Ecology &amp; Climate (vector and environment)</h3>
+        <ul class="citations-list">
+          <li>
+            Messina JP et al. <em>Climate Change and Risk Projection: Dynamic Spatial Models of Tsetse and Trypanosomiasis.</em>
+            PLoS Neglected Tropical Diseases, 2012.
+          </li>
+          <li>
+            Lord JS et al. <em>Climate change and African trypanosomiasis vector populations.</em>
+            Parasites &amp; Vectors, 2018.
+          </li>
+        </ul>
       </div>
     </section>
   </div>
@@ -573,7 +788,7 @@
 </footer>
 
 <script>
-  /* ---------- LIFE CYCLE STAGES (condensed from CDC/DPDx description) ---------- */
+  /* ---------- LIFE CYCLE STAGES ---------- */
   const stages = [
     {
       id: "1",
@@ -590,14 +805,14 @@
       ],
       notes: [
         "Can be associated with a local sore (trypanosomal chancre) at the bite site.",
-        "First step toward systemic disease and later CNS invasion."
+        "First step toward systemic disease and later central nervous system involvement."
       ],
       flow: "Tsetse salivary gland → human skin → lymphatic system → bloodstream."
     },
     {
       id: "2",
       order: 2,
-      name: "Bloodstream trypomastigote",
+      name: "Bloodstream trypomastigote (slender & stumpy forms)",
       short: "Bloodstream trypomastigote",
       host: "Mammalian host (human or animal reservoir)",
       location: "Blood and other body fluids, including lymph and spinal fluid",
@@ -608,8 +823,8 @@
         "All stages in humans are extracellular."
       ],
       notes: [
-        "This is the form detected on blood smears for diagnosis.",
-        "In late disease, parasites invade the CNS and cause neurologic symptoms."
+        "Includes replicating slender forms and non-dividing, transmission-competent stumpy forms.",
+        "This is the form detected on blood smears for diagnosis; later, parasites can invade the CNS and cause neurologic symptoms."
       ],
       flow: "Bloodstream and body fluids → ingested by tsetse fly during blood meal."
     },
@@ -672,7 +887,7 @@
     }
   ];
 
-  /* ---------- QUIZ QUESTIONS (CDC-style facts) ---------- */
+  /* ---------- QUIZ QUESTIONS ---------- */
   const quizQuestions = [
     {
       question: "What parasite causes human African trypanosomiasis (sleeping sickness)?",
@@ -684,7 +899,7 @@
         "Leishmania donovani"
       ],
       correctIndex: 0,
-      explanation: "Sleeping sickness is caused by Trypanosoma brucei species."
+      explanation: "Sleeping sickness is caused by Trypanosoma brucei parasites."
     },
     {
       question: "What insect vector transmits African trypanosomes to humans?",
@@ -696,7 +911,7 @@
         "Hard tick"
       ],
       correctIndex: 0,
-      explanation: "The only known vector for human African trypanosomiasis is the tsetse fly."
+      explanation: "The tsetse fly is the vector for human African trypanosomiasis."
     },
     {
       question: "Where are tsetse flies that spread sleeping sickness found?",
@@ -708,10 +923,10 @@
         "Southeast Asia only"
       ],
       correctIndex: 0,
-      explanation: "Transmission occurs in rural parts of sub-Saharan Africa where tsetse flies live."
+      explanation: "Sleeping sickness transmission occurs in rural parts of sub-Saharan Africa where tsetse flies live."
     },
     {
-      question: "Which subspecies is typically associated with West African sleeping sickness?",
+      question: "Which subspecies is typically associated with West and Central African sleeping sickness?",
       extra: "",
       options: [
         "Trypanosoma brucei gambiense",
@@ -720,7 +935,7 @@
         "Trypanosoma brucei brucei"
       ],
       correctIndex: 0,
-      explanation: "T. b. gambiense is responsible for most West and Central African human cases."
+      explanation: "T. b. gambiense causes most chronic cases in West and Central Africa."
     },
     {
       question: "Which subspecies usually causes a faster-progressing East African disease?",
@@ -732,7 +947,19 @@
         "Leishmania tropica"
       ],
       correctIndex: 0,
-      explanation: "T. b. rhodesiense typically produces an acute, rapidly progressing illness."
+      explanation: "T. b. rhodesiense typically produces an acute, rapidly progressing illness in East and Southeast Africa."
+    },
+    {
+      question: "Which bloodstream form is transmission-competent for the tsetse fly?",
+      extra: "",
+      options: [
+        "Stumpy form",
+        "Slender form",
+        "Both equally",
+        "Neither form"
+      ],
+      correctIndex: 0,
+      explanation: "The non-dividing stumpy form is adapted to survive in the tsetse midgut and is transmission-competent."
     },
     {
       question: "How many main clinical stages are recognized in human African trypanosomiasis?",
@@ -744,7 +971,7 @@
         "Four distinct chronic stages"
       ],
       correctIndex: 0,
-      explanation: "There are two main stages; the second involves the central nervous system."
+      explanation: "Two main stages are described: early blood/lymph disease and later central nervous system disease."
     },
     {
       question: "Which of the following is a typical early (first-stage) manifestation?",
@@ -768,7 +995,7 @@
         "Short-term ankle sprain"
       ],
       correctIndex: 0,
-      explanation: "Second-stage disease includes sleep–wake disruption and neuropsychiatric symptoms."
+      explanation: "Second-stage disease often includes disruption of the sleep–wake cycle."
     },
     {
       question: "In which morphologic form is T. brucei typically seen on blood smear?",
@@ -781,18 +1008,192 @@
       ],
       correctIndex: 0,
       explanation: "On smear it appears as an extracellular trypomastigote with a flagellum and undulating membrane."
+    }
+  ];
+
+  /* ---------- GAME: T. BRUCEI TRAIL ---------- */
+  const gameStates = [
+    {
+      id: "start",
+      title: "Salivary glands of a tsetse fly",
+      host: "Tsetse fly",
+      stageLabel: "Metacyclic trypomastigote",
+      progressLabel: "0 / 5 milestones",
+      text:
+        "You are a metacyclic trypomastigote waiting in the salivary glands of a tsetse fly. " +
+        "Your only chance to infect a mammal is when the fly takes a blood meal.",
+      options: [
+        {
+          label: "The fly feeds on a human in rural sub-Saharan Africa.",
+          next: "human-skin",
+          outcome: "You are injected into human skin with the fly’s saliva. Infection begins."
+        },
+        {
+          label: "The fly avoids humans and never feeds again.",
+          next: "dead",
+          outcome: "Without a blood meal on a mammal, you never leave the fly. The life cycle ends here."
+        }
+      ]
     },
     {
-      question: "What is the main reservoir for T. brucei gambiense in many endemic areas?",
-      extra: "",
+      id: "human-skin",
+      title: "From skin to bloodstream",
+      host: "Human",
+      stageLabel: "Early infection near bite site",
+      progressLabel: "1 / 5 milestones",
+      text:
+        "You have been deposited into human skin at the bite site. To establish infection, " +
+        "you must leave the skin and move deeper into the host.",
       options: [
-        "Humans",
-        "Freshwater snails",
-        "Mosquitoes",
-        "Fish"
-      ],
-      correctIndex: 0,
-      explanation: "Humans are an important reservoir for T. b. gambiense, sustaining transmission."
+        {
+          label: "Enter lymphatic vessels and then the bloodstream.",
+          next: "blood-slender",
+          outcome: "You enter lymph and blood and begin transforming into a bloodstream trypomastigote."
+        },
+        {
+          label: "Stay local in the skin and avoid moving.",
+          next: "dead",
+          outcome: "Staying put means you never establish systemic infection. The immune system clears you."
+        }
+      ]
+    },
+    {
+      id: "blood-slender",
+      title: "Slender bloodstream form",
+      host: "Human",
+      stageLabel: "Slender bloodstream trypomastigote",
+      progressLabel: "2 / 5 milestones",
+      text:
+        "You are now a slender bloodstream trypomastigote. You multiply and increase parasitemia, " +
+        "but if your numbers get too high, you must prepare for transmission back to a fly.",
+      options: [
+        {
+          label: "Keep multiplying as slender forms only.",
+          next: "overrun",
+          outcome: "You expand rapidly, but without producing stumpy forms there is no transmission-ready stage."
+        },
+        {
+          label: "Differentiate some progeny into stumpy forms.",
+          next: "blood-stumpy",
+          outcome: "You generate stumpy forms adapted to survive in a tsetse fly midgut."
+        }
+      ]
+    },
+    {
+      id: "overrun",
+      title: "No stumpy forms produced",
+      host: "Human",
+      stageLabel: "Slender trypomastigotes only",
+      progressLabel: "2 / 5 milestones",
+      text:
+        "You multiplied aggressively as slender forms but failed to generate stumpy forms. " +
+        "The host becomes very ill, but you are not prepared for transmission to a fly.",
+      options: [
+        {
+          label: "Restart the life cycle and try to balance replication and transmission.",
+          next: "start",
+          outcome: "You get another chance at T. brucei Trail."
+        }
+      ]
+    },
+    {
+      id: "blood-stumpy",
+      title: "Stumpy form waiting for a tsetse fly",
+      host: "Human",
+      stageLabel: "Stumpy bloodstream trypomastigote",
+      progressLabel: "3 / 5 milestones",
+      text:
+        "You are now in the non-dividing stumpy form, circulating in human blood and ready to survive " +
+        "conditions in the tsetse fly midgut if a fly feeds on this host.",
+      options: [
+        {
+          label: "A tsetse fly bites this infected human and takes a blood meal.",
+          next: "fly-midgut",
+          outcome: "You are ingested with the blood and enter the fly’s midgut."
+        },
+        {
+          label: "No flies feed; the infection runs its course in this host.",
+          next: "dead",
+          outcome: "Without a fly vector, the life cycle stops in the mammal."
+        }
+      ]
+    },
+    {
+      id: "fly-midgut",
+      title: "Procyclic trypomastigote in the midgut",
+      host: "Tsetse fly",
+      stageLabel: "Procyclic trypomastigote",
+      progressLabel: "4 / 5 milestones",
+      text:
+        "Inside the tsetse midgut, you must transform into a procyclic trypomastigote and multiply " +
+        "before migrating toward the salivary glands.",
+      options: [
+        {
+          label: "Adapt to the midgut, transform, and multiply as a procyclic trypomastigote.",
+          next: "fly-epimastigote",
+          outcome: "You establish infection in the midgut and begin moving toward the salivary glands."
+        },
+        {
+          label: "Remain in stumpy bloodstream form and fail to adapt.",
+          next: "dead",
+          outcome: "Forms that fail to adapt to the fly midgut do not complete development."
+        }
+      ]
+    },
+    {
+      id: "fly-epimastigote",
+      title: "Epimastigote in salivary glands",
+      host: "Tsetse fly",
+      stageLabel: "Epimastigote",
+      progressLabel: "4.5 / 5 milestones",
+      text:
+        "You have moved from the midgut to the proventriculus and then to the salivary glands as an epimastigote, " +
+        "multiplying by binary fission.",
+      options: [
+        {
+          label: "Differentiate into metacyclic trypomastigotes ready to infect a new mammal.",
+          next: "complete",
+          outcome: "You successfully become metacyclic trypomastigotes again, ready for the next bite."
+        },
+        {
+          label: "Stay as an epimastigote and never complete development.",
+          next: "dead",
+          outcome: "Without differentiating into metacyclic forms, you cannot infect another mammalian host."
+        }
+      ]
+    },
+    {
+      id: "complete",
+      title: "Life cycle complete",
+      host: "Tsetse fly",
+      stageLabel: "Metacyclic trypomastigote",
+      progressLabel: "5 / 5 milestones",
+      text:
+        "You are back in the salivary glands as a metacyclic trypomastigote, ready to infect another mammalian host. " +
+        "You have successfully completed the Trypanosoma brucei life cycle.",
+      options: [
+        {
+          label: "Play the T. brucei Trail again from the beginning.",
+          next: "start",
+          outcome: "You restart as a new metacyclic trypomastigote."
+        }
+      ]
+    },
+    {
+      id: "dead",
+      title: "Life cycle broken",
+      host: "—",
+      stageLabel: "Cycle ended",
+      progressLabel: "Stopped",
+      text:
+        "A key step in the life cycle failed. In nature, many parasites never complete the full cycle.",
+      options: [
+        {
+          label: "Restart T. brucei Trail and attempt the life cycle again.",
+          next: "start",
+          outcome: "You get another shot at being T. brucei."
+        }
+      ]
     }
   ];
 
@@ -805,14 +1206,21 @@
   const stageKeypointsEl = document.getElementById("stage-keypoints");
   const stageNotesEl = document.getElementById("stage-notes");
   const stageFlowEl = document.getElementById("stage-flow");
+  const bsFormsSection = document.getElementById("bs-forms-section");
 
   const panelExplore = document.getElementById("panel-explore");
   const panelQuiz = document.getElementById("panel-quiz");
+  const panelGame = document.getElementById("panel-game");
   const panelWhy = document.getElementById("panel-why");
+  const panelEcology = document.getElementById("panel-ecology");
+  const panelCitations = document.getElementById("panel-citations");
 
   const modeExploreBtn = document.getElementById("mode-explore");
   const modeQuizBtn = document.getElementById("mode-quiz");
+  const modeGameBtn = document.getElementById("mode-game");
   const modeWhyBtn = document.getElementById("mode-why");
+  const modeEcologyBtn = document.getElementById("mode-ecology");
+  const modeCitationsBtn = document.getElementById("mode-citations");
 
   const quizQuestionText = document.getElementById("quiz-question-text");
   const quizQuestionExtra = document.getElementById("quiz-question-extra");
@@ -821,12 +1229,24 @@
   const quizNextBtn = document.getElementById("quiz-next");
   const quizMetaEl = document.getElementById("quiz-meta");
 
+  const gameStatusEl = document.getElementById("game-status");
+  const gameStateTitleEl = document.getElementById("game-state-title");
+  const gameStateTextEl = document.getElementById("game-state-text");
+  const gameOptionsEl = document.getElementById("game-options");
+  const gameOutcomeEl = document.getElementById("game-outcome");
+  const gameMetaEl = document.getElementById("game-meta");
+  const gameResetBtn = document.getElementById("game-reset");
+
   const STORAGE_KEY = "tbruceiQuizStats_v1";
 
   let selectedStageId = null;
   let quizState = { index: 0, correct: 0, total: 0, locked: false };
+  let currentGameStateId = "start";
+  let gameSteps = 0;
+  let gameRuns = 0;
+  let gameCompletedRuns = 0;
 
-  /* ---------- LOCAL STORAGE HELPERS ---------- */
+  /* ---------- QUIZ STORAGE ---------- */
   function loadQuizStatsFromStorage() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
@@ -842,7 +1262,7 @@
         quizState.total = data.total;
       }
     } catch (e) {
-      // ignore if storage is blocked or malformed
+      // ignore
     }
   }
 
@@ -854,7 +1274,7 @@
       };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
     } catch (e) {
-      // ignore if storage not available
+      // ignore
     }
   }
 
@@ -928,40 +1348,64 @@
     });
 
     stageFlowEl.textContent = stage.flow || "";
+
+    if (stage.id === "2") {
+      bsFormsSection.style.display = "block";
+    } else {
+      bsFormsSection.style.display = "none";
+    }
   }
 
-  /* ---------- MODE SWITCH ---------- */
+  /* ---------- MODE SWITCHING ---------- */
+  function hideAllPanels() {
+    panelExplore.style.display = "none";
+    panelQuiz.style.display = "none";
+    panelGame.style.display = "none";
+    panelWhy.style.display = "none";
+    panelEcology.style.display = "none";
+    panelCitations.style.display = "none";
+
+    modeExploreBtn.classList.remove("active");
+    modeQuizBtn.classList.remove("active");
+    modeGameBtn.classList.remove("active");
+    modeWhyBtn.classList.remove("active");
+    modeEcologyBtn.classList.remove("active");
+    modeCitationsBtn.classList.remove("active");
+  }
+
   function setMode(mode) {
+    hideAllPanels();
     if (mode === "explore") {
       panelExplore.style.display = "block";
-      panelQuiz.style.display = "none";
-      panelWhy.style.display = "none";
       modeExploreBtn.classList.add("active");
-      modeQuizBtn.classList.remove("active");
-      modeWhyBtn.classList.remove("active");
     } else if (mode === "quiz") {
-      panelExplore.style.display = "none";
       panelQuiz.style.display = "block";
-      panelWhy.style.display = "none";
-      modeExploreBtn.classList.remove("active");
       modeQuizBtn.classList.add("active");
-      modeWhyBtn.classList.remove("active");
       loadQuizQuestion();
+    } else if (mode === "game") {
+      panelGame.style.display = "block";
+      modeGameBtn.classList.add("active");
+      renderGameState(currentGameStateId);
     } else if (mode === "why") {
-      panelExplore.style.display = "none";
-      panelQuiz.style.display = "none";
       panelWhy.style.display = "block";
-      modeExploreBtn.classList.remove("active");
-      modeQuizBtn.classList.remove("active");
       modeWhyBtn.classList.add("active");
+    } else if (mode === "ecology") {
+      panelEcology.style.display = "block";
+      modeEcologyBtn.classList.add("active");
+    } else if (mode === "citations") {
+      panelCitations.style.display = "block";
+      modeCitationsBtn.classList.add("active");
     }
   }
 
   modeExploreBtn.addEventListener("click", () => setMode("explore"));
   modeQuizBtn.addEventListener("click", () => setMode("quiz"));
+  modeGameBtn.addEventListener("click", () => setMode("game"));
   modeWhyBtn.addEventListener("click", () => setMode("why"));
+  modeEcologyBtn.addEventListener("click", () => setMode("ecology"));
+  modeCitationsBtn.addEventListener("click", () => setMode("citations"));
 
-  /* ---------- QUIZ LOGIC (fixed question bank) ---------- */
+  /* ---------- QUIZ LOGIC ---------- */
   function loadQuizQuestion() {
     quizState.locked = false;
     quizFeedbackEl.textContent = "";
@@ -1029,15 +1473,72 @@
     loadQuizQuestion();
   });
 
+  /* ---------- GAME LOGIC ---------- */
+  function getGameState(id) {
+    return gameStates.find(s => s.id === id) || gameStates[0];
+  }
+
+  function renderGameState(id) {
+    const state = getGameState(id);
+    currentGameStateId = state.id;
+
+    gameStateTitleEl.innerHTML = state.title;
+    gameStateTextEl.innerHTML = state.text;
+    gameOutcomeEl.textContent = "";
+    gameOptionsEl.innerHTML = "";
+
+    state.options.forEach(opt => {
+      const btn = document.createElement("button");
+      btn.className = "btn";
+      btn.textContent = opt.label;
+      btn.style.width = "100%";
+      btn.addEventListener("click", () => {
+        gameSteps += 1;
+        currentGameStateId = opt.next;
+        gameOutcomeEl.textContent = opt.outcome;
+
+        // track completed runs
+        if (opt.next === "complete") {
+          gameCompletedRuns += 1;
+        }
+        renderGameState(opt.next);
+      });
+      gameOptionsEl.appendChild(btn);
+    });
+
+    gameStatusEl.textContent =
+      "Host: " +
+      state.host +
+      " • Stage: " +
+      state.stageLabel +
+      " • Milestones: " +
+      state.progressLabel;
+
+    gameMetaEl.textContent =
+      "Steps this run: " +
+      gameSteps +
+      " • Completed cycles: " +
+      gameCompletedRuns +
+      " • Runs started: " +
+      gameRuns;
+  }
+
+  gameResetBtn.addEventListener("click", () => {
+    currentGameStateId = "start";
+    gameSteps = 0;
+    gameRuns += 1;
+    renderGameState(currentGameStateId);
+  });
+
   /* ---------- INIT ---------- */
   loadQuizStatsFromStorage();
   renderStageList();
   if (stages.length > 0) {
     selectStage(stages[0].id);
   }
-  // Prep first quiz question so Quiz tab is ready the first time you click it
   loadQuizQuestion();
+  gameRuns = 1;
+  renderGameState(currentGameStateId);
 </script>
 </body>
 </html>
-
