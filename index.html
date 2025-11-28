@@ -183,6 +183,7 @@
       padding: 1rem 1.2rem 1.2rem;
       box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
       min-height: 260px;
+      position: relative;
     }
 
     .card h2 {
@@ -375,24 +376,75 @@
 
     .game-status {
       font-size: 0.78rem;
-      color: #9ca3af;
-      margin-top: 0.4rem;
-      margin-bottom: 0.1rem;
+      color: #c7d2fe;
+      margin-top: 0.1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    /* Game Boy style shell */
+    .gameboy-shell {
+      margin-top: 0.6rem;
+      border-radius: 1.2rem;
+      border: 2px solid #4b5563;
+      padding: 0.7rem 0.8rem 0.85rem;
+      background: radial-gradient(circle at top, #0b1120, #020617);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.7);
+    }
+
+    .game-screen {
+      border-radius: 0.9rem;
+      border: 2px solid #6b7280;
+      background: radial-gradient(circle at top, #3b5a3c, #111827);
+      padding: 0.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .game-screen::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(
+        rgba(15, 23, 42, 0.18) 1px,
+        transparent 1px
+      );
+      background-size: 100% 3px;
+      mix-blend-mode: soft-light;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .game-screen-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .game-body {
+      margin-top: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .game-body .game-meta {
+      flex: 1;
     }
 
     .game-map {
-      margin-top: 0.6rem;
-      margin-bottom: 0.4rem;
-      padding: 0.5rem 0.6rem;
-      border-radius: 0.9rem;
-      border: 1px dashed #374151;
-      background: radial-gradient(circle at top, rgba(37,99,235,0.08), rgba(15,23,42,0.9));
+      margin-top: 0.4rem;
+      margin-bottom: 0.3rem;
+      padding: 0.45rem 0.6rem;
+      border-radius: 0.8rem;
+      border: 1px dashed #9ca3af;
+      background: radial-gradient(circle at top, rgba(74, 222, 128, 0.1), rgba(15, 23, 42, 0.9));
       position: relative;
     }
 
     .game-map-title {
       font-size: 0.78rem;
-      color: #9ca3af;
+      color: #a5f3fc;
       margin-bottom: 0.3rem;
       text-transform: uppercase;
       letter-spacing: 0.14em;
@@ -420,20 +472,20 @@
       width: 1.4rem;
       height: 1.4rem;
       border-radius: 999px;
-      border: 1px solid #4b5563;
+      border: 1px solid #9ca3af;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       color: #e5e7eb;
-      background: #020617;
+      background: rgba(15, 23, 42, 0.95);
       position: relative;
       z-index: 1;
     }
 
     .game-node-label {
       font-size: 0.7rem;
-      color: #9ca3af;
+      color: #d1fae5;
       text-align: center;
     }
 
@@ -443,8 +495,8 @@
       left: 1.5rem;
       right: 1.5rem;
       height: 2px;
-      background: linear-gradient(90deg, rgba(148,163,184,0.5), rgba(37,99,235,0.7), rgba(148,163,184,0.5));
-      opacity: 0.6;
+      background: linear-gradient(90deg, rgba(148,163,184,0.4), rgba(74,222,128,0.9), rgba(148,163,184,0.4));
+      opacity: 0.8;
       pointer-events: none;
       top: 0.7rem;
       z-index: 0;
@@ -452,8 +504,8 @@
 
     .game-node.active .game-node-circle {
       border-color: #22c55e;
-      background: radial-gradient(circle, rgba(34,197,94,0.35), #020617);
-      box-shadow: 0 0 18px rgba(34,197,94,0.5);
+      background: radial-gradient(circle, rgba(34,197,94,0.5), #020617);
+      box-shadow: 0 0 18px rgba(34,197,94,0.7);
       animation: pulseNode 1.4s ease-out infinite;
     }
 
@@ -466,17 +518,17 @@
     .game-progress {
       margin-top: 0.4rem;
       width: 100%;
-      height: 0.4rem;
+      height: 0.35rem;
       border-radius: 999px;
-      background: #020617;
-      border: 1px solid #374151;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid #6b7280;
       overflow: hidden;
     }
 
     .game-progress-fill {
       height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, #22c55e, #4ade80, #22c55e);
+      background: linear-gradient(90deg, #22c55e, #4ade80, #bbf7d0);
       transition: width 0.25s ease-out;
     }
 
@@ -484,7 +536,7 @@
       margin-top: 0.5rem;
       border-radius: 0.9rem;
       border: 1px solid #374151;
-      background: rgba(15, 23, 42, 0.95);
+      background: rgba(15, 23, 42, 0.96);
       padding: 0.7rem 0.8rem;
     }
 
@@ -503,7 +555,7 @@
       font-size: 0.8rem;
       margin-top: 0.3rem;
       min-height: 1.2em;
-      color: #9ca3af;
+      color: #e5e7eb;
     }
 
     .game-options {
@@ -516,7 +568,7 @@
     .game-meta {
       font-size: 0.75rem;
       color: #9ca3af;
-      margin-top: 0.4rem;
+      margin-top: 0.2rem;
     }
 
     .game-intro-overlay {
@@ -747,37 +799,45 @@
           Wrong choices break the cycle.
         </p>
 
-        <div class="game-status" id="game-status"></div>
+        <div class="gameboy-shell">
+          <div class="game-screen">
+            <div class="game-screen-inner">
+              <div class="game-status" id="game-status"></div>
 
-        <div class="game-map">
-          <div class="game-map-title">Life Cycle Trail</div>
-          <div class="game-map-row" id="game-map-row">
-            <div class="game-node" data-slot="fly">
-              <div class="game-node-circle">🪰</div>
-              <div class="game-node-label">Tsetse fly</div>
-            </div>
-            <div class="game-node" data-slot="human">
-              <div class="game-node-circle">🧍</div>
-              <div class="game-node-label">Human host</div>
-            </div>
-            <div class="game-node" data-slot="fly2">
-              <div class="game-node-circle">🪰</div>
-              <div class="game-node-label">Next fly</div>
+              <div class="game-map">
+                <div class="game-map-title">Life Cycle Trail</div>
+                <div class="game-map-row" id="game-map-row">
+                  <div class="game-node" data-slot="fly">
+                    <div class="game-node-circle">🪰</div>
+                    <div class="game-node-label">Tsetse fly</div>
+                  </div>
+                  <div class="game-node" data-slot="human">
+                    <div class="game-node-circle">🧍</div>
+                    <div class="game-node-label">Human host</div>
+                  </div>
+                  <div class="game-node" data-slot="fly2">
+                    <div class="game-node-circle">🪰</div>
+                    <div class="game-node-label">Next fly</div>
+                  </div>
+                </div>
+                <div class="game-progress">
+                  <div class="game-progress-fill" id="game-progress-fill"></div>
+                </div>
+              </div>
+
+              <div class="game-box">
+                <div class="game-title" id="game-state-title"></div>
+                <div class="game-text" id="game-state-text"></div>
+                <div class="game-options" id="game-options"></div>
+                <div class="game-outcome" id="game-outcome"></div>
+              </div>
             </div>
           </div>
-          <div class="game-progress">
-            <div class="game-progress-fill" id="game-progress-fill"></div>
+          <div class="game-body">
+            <div class="game-meta" id="game-meta"></div>
+            <button class="btn" id="game-reset">Restart T. brucei Trail</button>
           </div>
         </div>
-
-        <div class="game-box">
-          <div class="game-title" id="game-state-title"></div>
-          <div class="game-text" id="game-state-text"></div>
-          <div class="game-options" id="game-options"></div>
-          <div class="game-outcome" id="game-outcome"></div>
-          <div class="game-meta" id="game-meta"></div>
-        </div>
-        <button class="btn" id="game-reset" style="margin-top:0.6rem;">Restart T. brucei Trail</button>
       </div>
 
       <div class="game-intro-overlay" id="game-intro-overlay">
@@ -798,14 +858,14 @@
       <div class="why-section">
         <div class="why-highlight">
           <strong>Human African trypanosomiasis is typically fatal without treatment.</strong>
-          It is a neglected tropical disease caused by <em>Trypanosoma brucei</em> parasites, transmitted by infected tsetse flies in sub-Saharan Africa.
+          It is a neglected tropical disease caused by <em>Trypanosoma brucei</em> parasites, transmitted by infected tsetse flies in sub-Saharan Africa. 
         </div>
 
         <h3>Human and community burden</h3>
         <p>
           Infection often starts with fever, headache, and lymphadenopathy and can progress to confusion, behavior changes,
           and disruption of the sleep–wake cycle when the central nervous system is involved. Without diagnosis and treatment,
-          people may progress to coma and death.
+          people may progress to coma and death. 
         </p>
         <ul class="bullet-list">
           <li>Historically responsible for major epidemics in West, Central, and East Africa.</li>
@@ -822,7 +882,7 @@
 
         <h3>Where it occurs</h3>
         <p>
-          Sleeping sickness occurs only in areas of sub-Saharan Africa where tsetse flies live. Two subspecies cause human disease:
+          Sleeping sickness occurs only in areas of sub-Saharan Africa where tsetse flies live. Two subspecies cause human disease: 
         </p>
         <ul class="bullet-list">
           <li>
@@ -839,8 +899,8 @@
           symptoms, and control. This tool:
         </p>
         <ul class="bullet-list">
-          <li>Walks through vector and host stages in CDC-based order.</li>
-          <li>Links stages to clinical features and diagnostic forms described in CDC guidance.</li>
+          <li>Walks through vector and host stages in CDC-based order. </li>
+          <li>Links stages to clinical features and diagnostic forms described in CDC guidance. </li>
           <li>Uses a quiz and an Oregon Trail–style game to lock the concepts in memory.</li>
           <li>Connects life-cycle biology to public health and systems thinking.</li>
         </ul>
@@ -855,12 +915,12 @@
         <p>
           Tsetse flies that transmit <em>Trypanosoma brucei</em> are found in rural areas of sub-Saharan Africa.
           They live in woodlands, savannah, and vegetation along streams and rivers. Flies feed on wild animals, livestock, and humans,
-          creating a multi-host transmission network.
+          creating a multi-host transmission network. 
         </p>
         <ul class="bullet-list">
-          <li>For <em>T. b. gambiense</em>, humans are an important reservoir in many foci.</li>
-          <li>For <em>T. b. rhodesiense</em>, cattle and wildlife are major reservoirs.</li>
-          <li>Land use changes (clearing, farming, roads) alter contact between flies, livestock, wildlife, and people.</li>
+          <li>For <em>T. b. gambiense</em>, humans are an important reservoir in many foci. </li>
+          <li>For <em>T. b. rhodesiense</em>, cattle and wildlife are major reservoirs. </li>
+          <li>Land use changes (clearing, farming, roads) alter contact between flies, livestock, wildlife, and people. </li>
         </ul>
 
         <div class="chip-row">
@@ -871,7 +931,7 @@
 
         <h3>Climate sensitivity</h3>
         <p>
-          Tsetse flies depend on temperature, humidity, and vegetation. Studies suggest that:
+          Tsetse flies depend on temperature, humidity, and vegetation. Studies using dynamic models and field data show that: 
         </p>
         <ul class="bullet-list">
           <li>Hotter, drier conditions can reduce tsetse survival in some lowland zones.</li>
@@ -891,28 +951,28 @@
       <div class="onehealth-section">
         <p>
           Human African trypanosomiasis is a classic One Health problem: humans, animals, and the environment are all part of one
-          connected system.
+          connected system. 
         </p>
 
         <h3>Human health</h3>
         <ul class="bullet-list">
-          <li>Untreated infection leads to severe neurologic disease and death.</li>
-          <li>Most affected communities are rural and have limited access to diagnostics and treatment.</li>
-          <li>Control programs depend on community engagement and sustained surveillance.</li>
+          <li>Untreated infection leads to severe neurologic disease and death. </li>
+          <li>Most affected communities are rural and have limited access to diagnostics and treatment. </li>
+          <li>Control programs depend on community engagement and sustained surveillance. </li>
         </ul>
 
         <h3>Animal health</h3>
         <ul class="bullet-list">
-          <li>Related trypanosomes cause disease in livestock (trypanosomiasis), reducing weight, milk production, and work capacity.</li>
-          <li>In areas with <em>T. b. rhodesiense</em>, cattle and wildlife can act as reservoirs that spill infection into humans.</li>
-          <li>Improved animal health can simultaneously support livelihoods and reduce human risk.</li>
+          <li>Related trypanosomes cause disease in livestock, reducing weight, milk production, and work capacity. </li>
+          <li>In areas with <em>T. b. rhodesiense</em>, cattle and wildlife can act as reservoirs that spill infection into humans. </li>
+          <li>Improved animal health can simultaneously support livelihoods and reduce human risk. </li>
         </ul>
 
         <h3>Environment &amp; vector control</h3>
         <ul class="bullet-list">
-          <li>Tsetse distribution is shaped by vegetation, water, and climate.</li>
-          <li>Vector control tools (traps, insecticide-treated targets, and other methods) need to fit local ecosystems.</li>
-          <li>Land use changes can either reduce or expand tsetse habitat depending on how they alter vegetation and host density.</li>
+          <li>Tsetse distribution is shaped by vegetation, water, and climate. </li>
+          <li>Vector control tools (traps, insecticide-treated targets, and other methods) need to fit local ecosystems. </li>
+          <li>Land use changes can either reduce or expand tsetse habitat depending on how they alter vegetation and host density. </li>
         </ul>
 
         <div class="chip-row">
@@ -941,87 +1001,76 @@
           Key sources used in building this tool, including CDC, WHO, and peer-reviewed studies.
         </p>
 
-        <h3>CDC – Sleeping Sickness / Human African Trypanosomiasis</h3>
+        <h3>CDC – Sleeping sickness / human African trypanosomiasis</h3>
         <ul class="citations-list">
           <li>
-            Centers for Disease Control and Prevention. (n.d.). <em>Sleeping sickness (African trypanosomiasis): About.</em>
-            Retrieved from
-            <a href="https://www.cdc.gov/sleeping-sickness/about/index.html" target="_blank" rel="noreferrer">
-              https://www.cdc.gov/sleeping-sickness/about/index.html
-            </a>
+            Centers for Disease Control and Prevention. (2025, March 10).
+            <em>Sleeping sickness (African trypanosomiasis): About.</em>
+            https://www.cdc.gov/sleeping-sickness/about/index.html 
           </li>
           <li>
-            Centers for Disease Control and Prevention. (n.d.). <em>Sleeping sickness (African trypanosomiasis): Causes.</em>
-            Retrieved from
-            <a href="https://www.cdc.gov/sleeping-sickness/causes/index.html" target="_blank" rel="noreferrer">
-              https://www.cdc.gov/sleeping-sickness/causes/index.html
-            </a>
+            Centers for Disease Control and Prevention. (2025, January 31).
+            <em>Sleeping sickness (African trypanosomiasis): Causes.</em>
+            https://www.cdc.gov/sleeping-sickness/causes/index.html 
           </li>
           <li>
-            Centers for Disease Control and Prevention. (n.d.). <em>Sleeping sickness (African trypanosomiasis): Prevention.</em>
-            Retrieved from
-            <a href="https://www.cdc.gov/sleeping-sickness/prevention/index.html" target="_blank" rel="noreferrer">
-              https://www.cdc.gov/sleeping-sickness/prevention/index.html
-            </a>
+            Centers for Disease Control and Prevention. (2024, March 22).
+            <em>Sleeping sickness (African trypanosomiasis): Symptoms.</em>
+            https://www.cdc.gov/sleeping-sickness/symptoms/index.html 
           </li>
           <li>
-            Centers for Disease Control and Prevention. (n.d.). <em>Clinical guidance for human African trypanosomiasis.</em>
-            Retrieved from
-            <a href="https://www.cdc.gov/sleeping-sickness/hcp/clinical-guidance/index.html" target="_blank" rel="noreferrer">
-              https://www.cdc.gov/sleeping-sickness/hcp/clinical-guidance/index.html
-            </a>
+            Centers for Disease Control and Prevention. (2024, March 25).
+            <em>Clinical guidance for human African trypanosomiasis.</em>
+            https://www.cdc.gov/sleeping-sickness/hcp/clinical-guidance/index.html 
           </li>
           <li>
-            Centers for Disease Control and Prevention. (n.d.). <em>Clinical care of human African trypanosomiasis.</em>
-            Retrieved from
-            <a href="https://www.cdc.gov/sleeping-sickness/hcp/clinical-care/index.html" target="_blank" rel="noreferrer">
-              https://www.cdc.gov/sleeping-sickness/hcp/clinical-care/index.html
-            </a>
+            Centers for Disease Control and Prevention. (2024, December 16).
+            <em>Clinical care of human African trypanosomiasis.</em>
+            https://www.cdc.gov/sleeping-sickness/hcp/clinical-care/index.html 
           </li>
         </ul>
 
-        <h3>CDC – DPDx Parasitology (Life Cycle &amp; Morphology)</h3>
+        <h3>CDC – DPDx parasitology (life cycle &amp; morphology)</h3>
         <ul class="citations-list">
           <li>
-            Centers for Disease Control and Prevention. (n.d.). <em>DPDx: Trypanosomiasis, African.</em>
-            Retrieved from
-            <a href="https://www.cdc.gov/dpdx/trypanosomiasisafrican/index.html" target="_blank" rel="noreferrer">
-              https://www.cdc.gov/dpdx/trypanosomiasisafrican/index.html
-            </a>
+            Centers for Disease Control and Prevention. (2019, November 20).
+            <em>DPDx: Trypanosomiasis, African.</em>
+            https://www.cdc.gov/dpdx/trypanosomiasisafrican/index.html 
           </li>
           <li>
-            Centers for Disease Control and Prevention. (2020). <em>DPDx: Case #514 – April 2020.</em>
-            Retrieved from
-            <a href="https://www.cdc.gov/dpdx/monthlycasestudies/2020/case514.html" target="_blank" rel="noreferrer">
-              https://www.cdc.gov/dpdx/monthlycasestudies/2020/case514.html
-            </a>
+            Centers for Disease Control and Prevention. (2020, April).
+            <em>DPDx: Case #514 – African trypanosomiasis.</em>
+            https://www.cdc.gov/dpdx/monthlycasestudies/2020/case514.html 
           </li>
         </ul>
 
         <h3>WHO and global burden</h3>
         <ul class="citations-list">
           <li>
-            World Health Organization. (n.d.). <em>Trypanosomiasis, human African (sleeping sickness): Fact sheet.</em>
-            Retrieved from
-            <a href="https://www.who.int/news-room/fact-sheets/detail/trypanosomiasis-human-african-(sleeping-sickness)" target="_blank" rel="noreferrer">
-              https://www.who.int/news-room/fact-sheets/detail/trypanosomiasis-human-african-(sleeping-sickness)
-            </a>
+            World Health Organization. (2023, May 2).
+            <em>Trypanosomiasis, human African (sleeping sickness): Fact sheet.</em>
+            https://www.who.int/news-room/fact-sheets/detail/trypanosomiasis-human-african-(sleeping-sickness) 
+          </li>
+          <li>
+            World Health Organization. (n.d.).
+            <em>Human African trypanosomiasis (sleeping sickness).</em>
+            https://www.who.int/health-topics/human-african-trypanosomiasis 
           </li>
         </ul>
 
         <h3>Ecology &amp; climate (vector and environment)</h3>
         <ul class="citations-list">
           <li>
-            Lord, J. S., Hargrove, J. W., Torr, S. J., Vale, G. A., &amp; Rogers, D. J. (2018).
-            Climate change and African trypanosomiasis vector populations.
-            <em>Parasites &amp; Vectors, 11</em>, 1–9.
-            https://doi.org/10.1186/s13071-018-2867-5
+            Lord, J. S., Hargrove, J. W., Torr, S. J., &amp; Vale, G. A. (2018).
+            Climate change and African trypanosomiasis vector populations in Zimbabwe’s Zambezi Valley:
+            A mathematical modelling study. <em>PLOS Medicine, 15</em>(10), e1002675.
+            https://doi.org/10.1371/journal.pmed.1002675 
           </li>
           <li>
-            Messina, J. P., Moore, N., DeVisser, M., McCord, P., &amp; Walker, E. D. (2012).
-            Climate change and risk projection: Dynamic spatial models of tsetse and trypanosomiasis.
-            <em>PLOS Neglected Tropical Diseases, 6</em>(11), e1908.
-            https://doi.org/10.1371/journal.pntd.0001908
+            Messina, J. P., Moore, N. J., DeVisser, M. H., McCord, P. F., &amp; Walker, E. D. (2012).
+            Climate change and risk projection: Dynamic spatial models of tsetse and African trypanosomiasis in Kenya.
+            <em>Annals of the Association of American Geographers, 102</em>(5), 1038–1048.
+            https://doi.org/10.1080/00045608.2012.671134 
           </li>
         </ul>
       </div>
@@ -1899,7 +1948,6 @@
   if (gameIntroStartBtn && gameIntroOverlay) {
     gameIntroStartBtn.addEventListener("click", () => {
       gameIntroOverlay.style.display = "none";
-      // fresh run
       currentGameStateId = "start";
       gameSteps = 0;
       gameRuns += 1;
@@ -1919,4 +1967,5 @@
 </script>
 </body>
 </html>
+
 
