@@ -506,6 +506,23 @@
     a:hover {
       text-decoration: underline;
     }
+
+    /* small utility */
+    .image-card {
+      border-radius: 0.85rem;
+      border: 1px solid rgba(55,65,81,0.95);
+      background: radial-gradient(circle at top, #020617, #020617 60%, #000);
+      padding: 0.6rem;
+      text-align: center;
+    }
+
+    .image-card img {
+      max-width: 100%;
+      border-radius: 0.5rem;
+      display: block;
+      margin: 0 auto 0.4rem;
+    }
+
   </style>
 </head>
 <body>
@@ -555,7 +572,7 @@
         <li>Play an Oregon Trail–style <strong>“T. brucei Trail”</strong> scenario that follows the parasite from human → tsetse → human.</li>
         <li>Use a <strong>quiz</strong> focused on life cycle, diagnosis, and ecology, with percentage scoring and attempt tracking.</li>
         <li>Practice structure recognition using a <strong>morphology labeling game</strong> on a bloodstream trypomastigote diagram.</li>
-        <li>Connect biology to <strong>ecology, climate change, and One Health</strong> using literature-based summaries.</li>
+        <li>Connect biology to <strong>ecology, climate change, geography, and One Health</strong>.</li>
       </ul>
       <p class="muted" style="margin-top:0.5rem;">
         Design intent: clear enough for early learners, but accurate enough that a grad
@@ -622,9 +639,7 @@
         perspective. Choices are constrained so that correct answers stay consistent with
         CDC / DPDx life-cycle checkpoints.
       </p>
-      <div class="trail-progress" id="trail-steps">
-        <!-- steps will be rendered here -->
-      </div>
+      <div class="trail-progress" id="trail-steps"></div>
       <div class="quiz-block" id="trail-block">
         <p class="quiz-question" id="trail-text"></p>
         <div class="quiz-options" id="trail-options"></div>
@@ -657,51 +672,69 @@
       </div>
     </section>
 
-    <!-- ECOLOGY & CLIMATE -->
+    <!-- ECOLOGY & CLIMATE + GEOGRAPHY -->
     <section id="panel-ecology" class="card" style="display:none;">
-      <h2>Ecology &amp; climate change</h2>
-      <p>
-        Tsetse flies are bound to specific ecological niches: temperature, humidity,
-        vegetation, and host availability shape where they can persist. Climate and land
-        use directly reshape the map of trypanosomiasis risk.
-      </p>
-      <ul class="citations-list">
-        <li>
-          <strong>Climate-driven range shifts.</strong> Dynamic spatial models combining
-          climate and land-cover data in East Africa show that warming and altered
-          rainfall can contract tsetse habitat in some lowland areas while opening new
-          suitable zones at higher elevation or latitude. As tsetse ranges move, so does
-          the geography of risk for both human and animal African trypanosomiasis.
-        </li>
-        <li>
-          <strong>Risk mosaics, not a single belt.</strong> Fine-scale mapping in
-          Tanzania, Kenya, and the Zambezi Valley demonstrates “patchy” mosaics of risk,
-          where local habitat and microclimate produce islands of high tsetse density
-          amid low-risk areas.
-        </li>
-        <li>
-          <strong>Vector decline vs. parasite flexibility.</strong> In some regions,
-          hotter, drier conditions and control efforts contribute to documented collapses
-          in tsetse populations, which can reduce transmission locally. At the same time,
-          related trypanosomes that no longer rely on tsetse (e.g. <em>T. evansi</em>,
-          <em>T. equiperdum</em>) show how, over evolutionary time, loss of an obligate
-          vector can lead to life-cycle simplification and monomorphic bloodstream
-          forms with mechanical or sexual transmission.
-        </li>
-      </ul>
-      <p>
-        For human disease due to <em>T. brucei gambiense</em> and
-        <em>T. b. rhodesiense</em>, current field evidence still supports a
-        tsetse-dependent cycle with stumpy forms as the transmission stage. Laboratory
-        passage and vector-free animal relatives illustrate what can happen when
-        selection no longer rewards tsetse survival, but they do not overturn the
-        canonical CDC / WHO life-cycle for human sleeping sickness.
-      </p>
-      <p class="muted" style="margin-top:0.5rem;">
-        Take-home: climate change can shrink or shift tsetse habitat, potentially lowering
-        risk in some places and creating new hotspots in others. Surveillance, livestock
-        management, and vector control all have to adapt in step.
-      </p>
+      <h2>Ecology, climate &amp; geographical distribution</h2>
+      <div class="split">
+        <div>
+          <p>
+            <em>T. brucei</em> is not “everywhere” – it is tightly tied to the
+            distribution of tsetse flies and the landscapes where flies, humans, and
+            livestock overlap. Most reported human cases occur in specific belts of
+            sub-Saharan Africa.
+          </p>
+          <ul class="citations-list">
+            <li>
+              <strong>Gambiense belt – West &amp; Central Africa.</strong>
+              <em>T. b. gambiense</em> causes a chronic form of sleeping sickness
+              across riverine and forest–savanna mosaic zones in countries such as the
+              Democratic Republic of the Congo and neighbouring states. Communities most
+              affected are often remote rural villages near rivers and gallery forest,
+              where people farm, fish, or collect wood and have regular tsetse exposure.
+            </li>
+            <li>
+              <strong>Rhodesiense belt – East &amp; Southern Africa.</strong>
+              <em>T. b. rhodesiense</em> is more acute and linked to savanna and game
+              areas in countries such as Tanzania, Malawi, Uganda, and Zambia. Here,
+              risk often concentrates in cattle-keeping communities, game reserves, and
+              tourist or hunting areas where livestock and wildlife reservoirs sustain
+              transmission.
+            </li>
+            <li>
+              <strong>Climate-driven range shifts.</strong>
+              Dynamic models combining climate and land cover show that warming and
+              altered rainfall can contract tsetse habitat in some lowland zones while
+              opening new suitable areas at higher elevation or different latitudes.
+              That means the “red zone” on maps can shrink in some places but reappear
+              somewhere else.
+            </li>
+            <li>
+              <strong>Who carries the burden?</strong>
+              The people most affected are typically rural, low-income communities with
+              limited access to health care: farmers, fishers, pastoralists, and their
+              families. Animal trypanosomiasis in cattle and other livestock hits the
+              same households by reducing draft power, milk, and meat, reinforcing
+              poverty.
+            </li>
+          </ul>
+          <p class="muted">
+            Take-home: sleeping sickness is a disease of specific ecologies and
+            marginalized communities. Climate change, land use, and vector control can
+            all redraw the risk map over time.
+          </p>
+        </div>
+
+        <div>
+          <div class="image-card">
+            <!-- upload your ResearchGate map as tbrucei-geo-map.png -->
+            <img src="tbrucei-geo-map.png" alt="Geographical distribution of Trypanosoma brucei in the world">
+            <p class="muted">
+              Geographical distribution of <em>T. brucei</em>. Adapted from a ResearchGate
+              figure released under a Creative Commons Attribution 3.0 license.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- MORPHOLOGY GAME -->
@@ -713,8 +746,9 @@
         app calculates a percentage score.
       </p>
       <p class="muted">
-        Diagram: standard teaching illustration of a trypomastigote. Labels use classic
-        parasitology terms (e.g. nucleus, kinetoplast, undulating membrane, pellicle).
+        Diagram based on standard teaching illustrations of a trypomastigote (including
+        examples from the BCC blog network and similar resources). Labels use classic
+        parasitology terms such as undulating membrane, kinetoplast, and pellicle.
       </p>
 
       <div class="morph-layout">
@@ -840,7 +874,8 @@
       <p class="muted">
         Core biological and clinical information is taken from CDC and WHO resources,
         plus peer-reviewed articles on stumpy forms, ecology, and climate. OpenAI is
-        listed as the language model assisting with wording and interface logic.
+        listed as the language model assisting with wording and interface logic. Image
+        references for the morphology diagram and geographic map are also included.
       </p>
 
       <h3 style="margin-top:0.6rem;">CDC &amp; DPDx</h3>
@@ -955,8 +990,23 @@
         </li>
       </ol>
 
-      <h3>AI assistance</h3>
+      <h3>Images &amp; diagrams</h3>
       <ol class="citations-list-numbered" start="17">
+        <li>
+          BCC Blog Network. (n.d.).
+          <em>Trypanosoma brucei morphology diagram</em> [Illustration].
+          BCC Blog Network. Retrieved from the BCC Blog Network website.
+        </li>
+        <li>
+          ResearchGate. (n.d.).
+          <em>Geographical distribution of Trypanosoma brucei in the world</em> [Map].
+          ResearchGate. Retrieved from the ResearchGate website (Creative Commons
+          Attribution 3.0 license).
+        </li>
+      </ol>
+
+      <h3>AI assistance</h3>
+      <ol class="citations-list-numbered" start="19">
         <li>
           OpenAI. (2025).
           <em>ChatGPT (GPT-5.1 Thinking) [Large language model].</em>
@@ -1164,8 +1214,6 @@
   }
 
   trailRestartBtn.addEventListener('click', resetTrailGame);
-
-  // initialise trail
   resetTrailGame();
 
   // ---------- QUIZ ----------
@@ -1413,5 +1461,4 @@
 </script>
 </body>
 </html>
-
 
