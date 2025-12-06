@@ -206,6 +206,23 @@
       line-height: 1.45;
     }
 
+    .citations-list-numbered {
+      list-style: decimal;
+      padding-left: 1.1rem;
+      margin-top: 0.3rem;
+    }
+
+    .citations-list-numbered li {
+      font-size: 0.82rem;
+      color: #e5e7eb;
+      margin-bottom: 0.35rem;
+      line-height: 1.45;
+    }
+
+    .citations-list-numbered em {
+      font-style: italic;
+    }
+
     .path-row {
       display: flex;
       flex-wrap: wrap;
@@ -342,114 +359,6 @@
       font-size: 0.85rem;
     }
 
-    /* Morphology game */
-    .morph-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr);
-      gap: 0.75rem;
-      margin-top: 0.5rem;
-    }
-
-    @media (min-width: 900px) {
-      .morph-layout {
-        grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-      }
-    }
-
-    .morph-diagram-wrapper {
-      position: relative;
-      border-radius: 0.85rem;
-      overflow: hidden;
-      border: 1px solid rgba(55,65,81,0.95);
-      background: radial-gradient(circle at top, #020617, #020617 60%, #000);
-      min-height: 260px;
-    }
-
-    .morph-diagram-wrapper img {
-      width: 100%;
-      display: block;
-      object-fit: contain;
-    }
-
-    .morph-dropzone {
-      position: absolute;
-      width: 80px;
-      height: 26px;
-      border-radius: 999px;
-      border: 1px dashed rgba(148,163,184,0.8);
-      background: rgba(15,23,42,0.88);
-      font-size: 0.72rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-muted);
-      pointer-events: auto;
-      cursor: default;
-      transition: box-shadow 0.15s ease, background 0.15s ease, border 0.15s ease;
-    }
-
-    .morph-dropzone.filled-correct {
-      border-style: solid;
-      border-color: rgba(34,197,94,0.95);
-      background: var(--accent-soft);
-      color: #bbf7d0;
-      font-weight: 600;
-    }
-
-    .morph-dropzone.incorrect-flash {
-      animation: flashWrong 0.35s ease;
-    }
-
-    @keyframes flashWrong {
-      0% { box-shadow: 0 0 0 0 rgba(239,68,68,0.9); }
-      100% { box-shadow: 0 0 0 12px transparent; }
-    }
-
-    .morph-sidebar {
-      border-radius: 0.85rem;
-      border: 1px solid rgba(55,65,81,0.95);
-      padding: 0.65rem 0.7rem;
-      background: radial-gradient(circle at top left, #020617, #020617 55%, #000);
-      display: flex;
-      flex-direction: column;
-      gap: 0.55rem;
-    }
-
-    .morph-labels {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-
-    .label-chip {
-      font-size: 0.78rem;
-      padding: 0.25rem 0.7rem;
-      border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.95);
-      background: rgba(15,23,42,0.95);
-      color: #e5e7eb;
-      cursor: grab;
-      user-select: none;
-      transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.1s ease;
-    }
-
-    .label-chip.dragging {
-      opacity: 0.75;
-      transform: scale(1.04);
-      box-shadow: 0 12px 25px rgba(15,23,42,0.9);
-      cursor: grabbing;
-    }
-
-    .morph-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.8rem;
-      gap: 0.4rem;
-      flex-wrap: wrap;
-    }
-
-    /* Trail game visual progress */
     .trail-progress {
       margin-top: 0.5rem;
       display: flex;
@@ -473,24 +382,6 @@
       font-weight: 500;
     }
 
-    /* Works cited */
-    .citations-list-numbered {
-      list-style: decimal;
-      padding-left: 1.1rem;
-      margin-top: 0.3rem;
-    }
-
-    .citations-list-numbered li {
-      font-size: 0.82rem;
-      color: #e5e7eb;
-      margin-bottom: 0.35rem;
-      line-height: 1.45;
-    }
-
-    .citations-list-numbered em {
-      font-style: italic;
-    }
-
     footer {
       margin-top: 0.8rem;
       font-size: 0.75rem;
@@ -507,22 +398,6 @@
       text-decoration: underline;
     }
 
-    /* small utility */
-    .image-card {
-      border-radius: 0.85rem;
-      border: 1px solid rgba(55,65,81,0.95);
-      background: radial-gradient(circle at top, #020617, #020617 60%, #000);
-      padding: 0.6rem;
-      text-align: center;
-    }
-
-    .image-card img {
-      max-width: 100%;
-      border-radius: 0.5rem;
-      display: block;
-      margin: 0 auto 0.4rem;
-    }
-
   </style>
 </head>
 <body>
@@ -531,14 +406,14 @@
     <h1><span class="highlight">Trypanosoma brucei</span> Interactive Module</h1>
     <p class="subtitle">
       Interactive web app for human African trypanosomiasis: life cycle, diagnosis,
-      morphology, ecology, climate links, and One Health. Core biological content is
-      aligned with CDC / DPDx / WHO descriptions.
+      trail-style game, ecology, climate links, morphology, and One Health. Core
+      biological content is aligned with CDC / DPDx / WHO descriptions.
     </p>
     <div class="pill-row">
       <span class="pill pill--accent">Life cycle &amp; transmission</span>
       <span class="pill">Trail-style scenario game</span>
       <span class="pill">Diagnosis &amp; quiz</span>
-      <span class="pill">Morphology labeling game</span>
+      <span class="pill">Morphology (structure)</span>
       <span class="pill">Ecology, climate &amp; One Health</span>
     </div>
   </header>
@@ -551,7 +426,7 @@
       <button class="nav-btn" data-target="panel-game"><span class="icon">🧭</span>T. brucei Trail</button>
       <button class="nav-btn" data-target="panel-quiz"><span class="icon">❓</span>Quiz</button>
       <button class="nav-btn" data-target="panel-ecology"><span class="icon">🌍</span>Ecology &amp; climate</button>
-      <button class="nav-btn" data-target="panel-morph"><span class="icon">🔬</span>Morphology game</button>
+      <button class="nav-btn" data-target="panel-morph"><span class="icon">🔬</span>Morphology &amp; structure</button>
       <button class="nav-btn" data-target="panel-images"><span class="icon">🩸</span>CDC images</button>
       <button class="nav-btn" data-target="panel-why"><span class="icon">⚕️</span>One Health &amp; burden</button>
       <button class="nav-btn" data-target="panel-citations"><span class="icon">📚</span>Works cited</button>
@@ -571,7 +446,7 @@
         <li>Explore a CDC-aligned <strong>life cycle walkthrough</strong>.</li>
         <li>Play an Oregon Trail–style <strong>“T. brucei Trail”</strong> scenario that follows the parasite from human → tsetse → human.</li>
         <li>Use a <strong>quiz</strong> focused on life cycle, diagnosis, and ecology, with percentage scoring and attempt tracking.</li>
-        <li>Practice structure recognition using a <strong>morphology labeling game</strong> on a bloodstream trypomastigote diagram.</li>
+        <li>Review a plain-language <strong>morphology &amp; structure</strong> section for the bloodstream trypomastigote.</li>
         <li>Connect biology to <strong>ecology, climate change, geography, and One Health</strong>.</li>
       </ul>
       <p class="muted" style="margin-top:0.5rem;">
@@ -723,91 +598,72 @@
             all redraw the risk map over time.
           </p>
         </div>
-
         <div>
-          <div class="image-card">
-            <!-- upload your ResearchGate map as tbrucei-geo-map.png -->
-            <img src="tbrucei-geo-map.png" alt="Geographical distribution of Trypanosoma brucei in the world">
-            <p class="muted">
-              Geographical distribution of <em>T. brucei</em>. Adapted from a ResearchGate
-              figure released under a Creative Commons Attribution 3.0 license.
-            </p>
-          </div>
+          <div class="badge">Map (conceptual)</div>
+          <p class="muted">
+            Standard maps of <em>T. brucei</em> distribution (for example in WHO
+            fact-sheets and ResearchGate figures) show two main belts: a West/Central
+            African gambiense belt and an East/Southern African rhodesiense belt. This
+            app does not embed the images directly, but the geographic description and
+            citations line up with those maps.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- MORPHOLOGY GAME -->
+    <!-- MORPHOLOGY & STRUCTURE (TEXT) -->
     <section id="panel-morph" class="card" style="display:none;">
-      <h2>Morphology game – label the bloodstream trypomastigote</h2>
+      <h2>Morphology &amp; structure – bloodstream trypomastigote</h2>
       <p>
-        Drag each structural label onto the correct region of the
-        <em>Trypanosoma</em> bloodstream-form diagram. When all labels are placed, the
-        app calculates a percentage score.
+        In human blood, <em>T. brucei</em> appears as an elongated, spiral-shaped
+        trypomastigote. Even without a labeled diagram on screen, you should be able to
+        mentally “see” the main structures and what they do.
       </p>
+      <ul class="citations-list">
+        <li>
+          <strong>Pellicle.</strong> A thin, flexible outer layer that maintains the
+          parasite’s shape while still allowing it to twist and snake through blood.
+        </li>
+        <li>
+          <strong>Free flagellum.</strong> At the anterior end, the flagellum extends
+          freely beyond the body. It drives motility and helps the parasite swim
+          against blood flow.
+        </li>
+        <li>
+          <strong>Attached flagellum &amp; undulating membrane.</strong> Along most of
+          the parasite length, the flagellum is attached to the cell body, forming an
+          undulating membrane. This rippling sheet is a classic diagnostic feature in
+          blood films.
+        </li>
+        <li>
+          <strong>Nucleus &amp; nucleolus.</strong> The central nucleus sits roughly in
+          the mid-body, with a nucleolus inside. This is the standard eukaryotic
+          control center (DNA, transcription, cell cycle regulation).
+        </li>
+        <li>
+          <strong>Kinetoplast.</strong> A dense disk of mitochondrial DNA positioned
+          near the flagellar pocket, usually posterior to the nucleus. In smears, the
+          kinetoplast appears as a small, distinct dot – a key feature to distinguish
+          trypanosomes from other blood parasites.
+        </li>
+        <li>
+          <strong>Endoplasm &amp; ectoplasm.</strong> The inner (endoplasm) and outer
+          (ectoplasm) cytoplasmic regions house organelles, metabolic machinery, and
+          the subpellicular microtubule corset that gives the parasite its resilience.
+        </li>
+        <li>
+          <strong>Surface coat.</strong> The parasite is covered by a dense layer of
+          variant surface glycoprotein (VSG), which is not a “structure” on simple
+          diagrams but is immunologically critical. Antigenic variation in VSG allows
+          immune evasion and contributes to relapsing parasitemia.
+        </li>
+      </ul>
       <p class="muted">
-        Diagram based on standard teaching illustrations of a trypomastigote (including
-        examples from the BCC blog network and similar resources). Labels use classic
-        parasitology terms such as undulating membrane, kinetoplast, and pellicle.
+        Even though the interactive drag-and-drop game has been stripped out for this
+        version, the language here mirrors the labels used in standard teaching
+        diagrams (including those from BCC Blog Network–style resources and CDC DPDx
+        material).
       </p>
-
-      <div class="morph-layout">
-        <div class="morph-diagram-wrapper" id="morph-diagram">
-          <!-- Make sure trypanosoma-diagram.png is in the same folder as this HTML file -->
-          <img src="trypanosoma-diagram.png" alt="Trypanosoma bloodstream-form diagram">
-
-          <!-- Hotspots – adjust top/left if needed for your specific image proportions -->
-          <div class="morph-dropzone" data-answer="free flagellum"
-               style="top: 62%; left: 6%;">?</div>
-
-          <div class="morph-dropzone" data-answer="undulating membrane"
-               style="top: 43%; left: 28%;">?</div>
-
-          <div class="morph-dropzone" data-answer="nucleus"
-               style="top: 36%; left: 47%;">?</div>
-
-          <div class="morph-dropzone" data-answer="nucleolus"
-               style="top: 47%; left: 50%;">?</div>
-
-          <div class="morph-dropzone" data-answer="attached flagellum"
-               style="top: 30%; left: 70%;">?</div>
-
-          <div class="morph-dropzone" data-answer="kinetoplast"
-               style="top: 63%; left: 76%;">?</div>
-
-          <div class="morph-dropzone" data-answer="reserve food granules"
-               style="top: 52%; left: 60%;">?</div>
-
-          <div class="morph-dropzone" data-answer="endoplasm"
-               style="top: 68%; left: 38%;">?</div>
-
-          <div class="morph-dropzone" data-answer="ectoplasm"
-               style="top: 80%; left: 32%;">?</div>
-
-          <div class="morph-dropzone" data-answer="pellicle"
-               style="top: 86%; left: 18%;">?</div>
-        </div>
-
-        <aside class="morph-sidebar">
-          <div class="badge">Drag these labels onto the diagram</div>
-          <div class="morph-labels" id="morph-labels">
-            <div class="label-chip" draggable="true" data-label="free flagellum">Free flagellum</div>
-            <div class="label-chip" draggable="true" data-label="attached flagellum">Attached flagellum</div>
-            <div class="label-chip" draggable="true" data-label="undulating membrane">Undulating membrane</div>
-            <div class="label-chip" draggable="true" data-label="nucleus">Nucleus</div>
-            <div class="label-chip" draggable="true" data-label="nucleolus">Nucleolus</div>
-            <div class="label-chip" draggable="true" data-label="kinetoplast">Kinetoplast</div>
-            <div class="label-chip" draggable="true" data-label="reserve food granules">Reserve food granules</div>
-            <div class="label-chip" draggable="true" data-label="endoplasm">Endoplasm</div>
-            <div class="label-chip" draggable="true" data-label="ectoplasm">Ectoplasm</div>
-            <div class="label-chip" draggable="true" data-label="pellicle">Pellicle</div>
-          </div>
-          <div class="morph-footer">
-            <span class="muted" id="morph-status">Placed 0 / 10 correctly.</span>
-            <button class="btn" id="morph-reset">Reset</button>
-          </div>
-        </aside>
-      </div>
     </section>
 
     <!-- CDC IMAGES -->
@@ -831,7 +687,7 @@
       </ul>
       <p class="muted">
         In a classroom, instructors can project DPDx images while students navigate the
-        Trail game, quiz, or morphology labeling activity.
+        Trail game, quiz, or morphology section in this app.
       </p>
     </section>
 
@@ -873,9 +729,10 @@
       <h2>Works cited (APA style)</h2>
       <p class="muted">
         Core biological and clinical information is taken from CDC and WHO resources,
-        plus peer-reviewed articles on stumpy forms, ecology, and climate. OpenAI is
-        listed as the language model assisting with wording and interface logic. Image
-        references for the morphology diagram and geographic map are also included.
+        plus peer-reviewed articles on stumpy forms, ecology, climate, and life-cycle
+        evolution. OpenAI is listed as the language model assisting with wording and
+        interface logic. Image-oriented resources are cited even though the images are
+        not embedded here.
       </p>
 
       <h3 style="margin-top:0.6rem;">CDC &amp; DPDx</h3>
@@ -990,7 +847,7 @@
         </li>
       </ol>
 
-      <h3>Images &amp; diagrams</h3>
+      <h3>Images &amp; diagrams (referenced, not embedded)</h3>
       <ol class="citations-list-numbered" start="17">
         <li>
           BCC Blog Network. (n.d.).
@@ -1379,86 +1236,8 @@
 
   renderQuizQuestion();
   updateQuizAttemptsText();
-
-  // ---------- MORPHOLOGY GAME ----------
-  const morphLabels = document.querySelectorAll('.label-chip');
-  const morphZones = document.querySelectorAll('.morph-dropzone');
-  const morphStatus = document.getElementById('morph-status');
-  const morphResetBtn = document.getElementById('morph-reset');
-
-  let draggingLabel = null;
-  let morphCorrect = 0;
-  const morphTotal = morphZones.length;
-
-  morphLabels.forEach(label => {
-    label.addEventListener('dragstart', e => {
-      draggingLabel = label;
-      label.classList.add('dragging');
-      e.dataTransfer.setData('text/plain', label.dataset.label);
-    });
-
-    label.addEventListener('dragend', () => {
-      draggingLabel = null;
-      label.classList.remove('dragging');
-    });
-  });
-
-  morphZones.forEach(zone => {
-    zone.addEventListener('dragover', e => {
-      e.preventDefault();
-    });
-
-    zone.addEventListener('drop', e => {
-      e.preventDefault();
-      if (!draggingLabel) return;
-
-      const answer = zone.dataset.answer;
-      const proposed = draggingLabel.dataset.label;
-
-      if (zone.classList.contains('filled-correct')) return;
-
-      if (answer === proposed) {
-        zone.textContent = draggingLabel.textContent;
-        zone.classList.add('filled-correct');
-        draggingLabel.style.display = 'none';
-        morphCorrect++;
-        updateMorphStatus();
-      } else {
-        zone.classList.add('incorrect-flash');
-        setTimeout(() => zone.classList.remove('incorrect-flash'), 320);
-      }
-    });
-  });
-
-  function updateMorphStatus() {
-    if (morphCorrect === 0) {
-      morphStatus.textContent = `Placed 0 / ${morphTotal} correctly.`;
-      return;
-    }
-    const pct = Math.round((morphCorrect / morphTotal) * 100);
-    if (morphCorrect === morphTotal) {
-      morphStatus.textContent =
-        `All labels placed: ${morphCorrect}/${morphTotal} correct (${pct}%).`;
-    } else {
-      morphStatus.textContent =
-        `Placed ${morphCorrect}/${morphTotal} correctly so far (${pct}%).`;
-    }
-  }
-
-  morphResetBtn.addEventListener('click', () => {
-    morphCorrect = 0;
-    morphZones.forEach(z => {
-      z.classList.remove('filled-correct', 'incorrect-flash');
-      z.textContent = '?';
-    });
-    morphLabels.forEach(l => {
-      l.style.display = '';
-    });
-    updateMorphStatus();
-  });
-
-  updateMorphStatus();
 </script>
 </body>
 </html>
+
 
